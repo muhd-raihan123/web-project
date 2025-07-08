@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>UTP - HTML Class Meeting Voting</title>
+  <style>
+    :root {
+      --primary-color: #005f87; /* UTP blue */
+      --secondary-color: #e6f2f8;
+      --accent-color: #ff6b35;
+      --text-color: #333;
+      --light-gray: #f5f5f5;
+      --medium-gray: #e0e0e0;
+      --dark-gray: #555;
+      --white: #ffffff;
+    }
+    
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      padding: 0;
+      color: var(--text-color);
+      line-height: 1.6;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+      background-color: var(--light-gray);
+    }
+    
+    header {
+      background-color: var(--primary-color);
+      color: var(--white);
+      padding: 1rem 0;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    
+    .header-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    
+    .logo-container {
+      display: flex;
+      align-items: center;
+      background-color: white;
+      padding: 5px;
+      border-radius: 4px;
+    }
+    
+    .logo {
+      height: 50px;
+    }
+    
+    nav {
+      display: flex;
+      gap: 1.5rem;
+    }
+    
+    nav a {
+      color: var(--white);
+      text-decoration: none;
+      font-weight: 500;
+      padding: 0.5rem 0;
+      border-bottom: 2px solid transparent;
+      transition: all 0.3s ease;
+    }
+    
+    nav a:hover, nav a:focus {
+      border-bottom-color: var(--white);
+    }
+    
+    main {
+      flex: 1;
+      max-width: 800px;
+      margin: 2rem auto;
+      padding: 0 2rem;
+    }
+    
+    .container {
+      background: var(--white);
+      padding: 2rem;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    }
+    
+    .page-title {
+      color: var(--primary-color);
+      margin-bottom: 0.5rem;
+      font-weight: 600;
+    }
+    
+    .page-subtitle {
+      color: var(--dark-gray);
+      font-size: 1.1rem;
+      margin-top: 0;
+      margin-bottom: 1.5rem;
+      font-weight: lighter;
+    }
+    
+    .deadline-note {
+      background-color: var(--secondary-color);
+      padding: 0.8rem;
+      border-radius: 4px;
+      margin: 1.5rem 0;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    
+    .deadline-note::before {
+      content: "⏰";
+      font-size: 1.2rem;
+    }
+    
+    .form-group {
+      margin-bottom: 1.5rem;
+    }
+    
+    label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-weight: 500;
+    }
+    
+    input[type="text"] {
+      width: 100%;
+      max-width: 300px;
+      padding: 0.8rem;
+      border: 1px solid var(--medium-gray);
+      border-radius: 4px;
+      font-size: 1rem;
+    }
+    
+    .btn {
+      background-color: var(--primary-color);
+      color: var(--white);
+      border: none;
+      padding: 0.8rem 1.5rem;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 1rem;
+      font-weight: 500;
+      transition: background-color 0.3s ease;
+    }
+    
+    .btn:hover {
+      background-color: #004a6a;
+    }
+    
+    .time-slots {
+      margin: 1.5rem 0;
+    }
+    
+    .time-option {
+      display: flex;
+      align-items: center;
+      margin: 0.8rem 0;
+      padding: 1rem;
+      border: 1px solid var(--medium-gray);
+      border-radius: 4px;
+      transition: all 0.2s ease;
+    }
+    
+    .time-option:hover {
+      border-color: var(--primary-color);
+      background-color: var(--secondary-color);
+    }
+    
+    .time-option input[type="checkbox"] {
+      margin-right: 1rem;
+      width: 1.2rem;
+      height: 1.2rem;
+      accent-color: var(--primary-color);
+    }
+    
+    .alert {
+      padding: 1rem;
+      margin: 1rem 0;
+      border-radius: 4px;
+      display: none;
+    }
+    
+    .alert-success {
+      background-color: #e6f7e6;
+      color: #2d662d;
+      border-left: 4px solid #4CAF50;
+    }
+    
+    .alert-error {
+      background-color: #fde8e8;
+      color: #86181d;
+      border-left: 4px solid #f44336;
+    }
+    
+    .registration-link {
+      color: var(--primary-color);
+      text-decoration: underline;
+      font-weight: bold;
+    }
+    
+    footer {
+      background-color: var(--primary-color);
+      color: var(--white);
+      padding: 2rem 0;
+      margin-top: 3rem;
+    }
+    
+    .footer-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+    
+    footer h3 {
+      margin-top: 0;
+      margin-bottom: 1rem;
+      font-size: 1.1rem;
+      font-weight: 600;
+    }
+    
+    footer p {
+      margin: 0.5rem 0;
+      opacity: 0.9;
+    }
+    
+    footer a {
+      color: var(--white);
+      text-decoration: none;
+      transition: opacity 0.3s ease;
+    }
+    
+    footer a:hover {
+      opacity: 0.8;
+      text-decoration: underline;
+    }
+    
+    @media (max-width: 768px) {
+      .header-content {
+        flex-direction: column;
+        gap: 1rem;
+        text-align: center;
+      }
+      
+      nav {
+        gap: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="header-content">
+      <div class="logo-container">
+        <img src="https://www.utp.edu.my/SiteAssets/UTP-logo2.png" alt="UTP Logo" class="logo">
+      </div>
+      <nav>
+        <a href="#registration">Registration</a>
+        <a href="#event">Event</a>
+        <a href="#report">Report</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <div class="container">
+      <h2 class="page-title">events.eventTitle</h2>
+      <p class="page-subtitle">events.eventDate</p>
+      
+      <p>events.eventDescription</p>
+      <p>Just follow these simple steps. To vote, student needs to register, key in UTP Student ID, select a meeting time slot and submit the vote.</p>
+      <p>The official voting results will be published at <a href="#">https://??</a></p>
+      
+      <div class="deadline-note">
+        Voting open until events.votingDeadline
+      </div>
+      
+      <div class="form-group" id="studentIdSection">
+        <label for="studentId">UTP Student ID</label>
+        <input type="text" id="studentId" placeholder="Enter your student ID">
+        <button class="btn" onclick="verifyStudent()">Verify ID</button>
+        <div id="idError" class="alert alert-error"></div>
+      </div>
+      
+      <div id="votingSection" style="display:none;">
+        <h3>Available Time Slots</h3>
+        <p>Please select up to 2 preferred time slots:</p>
+        
+        <div class="time-slots">
+          <label class="time-option">
+            <input type="checkbox" name="timeslot" value="8:00 am - 10:00 am">
+            8:00 AM – 10:00 AM
+          </label>
+          <label class="time-option">
+            <input type="checkbox" name="timeslot" value="10:00 am - 12:00 pm">
+            10:00 AM – 12:00 PM
+          </label>
+          <label class="time-option">
+            <input type="checkbox" name="timeslot" value="2:00 pm - 4:00 pm">
+            2:00 PM – 4:00 PM
+          </label>
+          <label class="time-option">
+            <input type="checkbox" name="timeslot" value="4:00 pm - 6:00 pm">
+            4:00 PM – 6:00 PM
+          </label>
+        </div>
+        
+        <button id="submitVoteBtn" class="btn" onclick="submitVote()">Submit Vote</button>
+        <div id="voteError" class="alert alert-error"></div>
+        <div id="voteSuccess" class="alert alert-success"></div>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <div class="footer-content">
+      <h3>Contact Us</h3>
+      <p>Universiti Teknologi PETRONAS</p>
+      <p>32610 Seri Iskandar</p>
+      <p>Perak Darul Ridzuan, Malaysia</p>
+      <p>Tel: 1-300-22-8887</p>
+      <p>Email: html-class@utp.edu.my</p>
+      <p><a href="https://www.utp.edu.my" target="_blank">https://www.utp.edu.my</a></p>
+    </div>
+  </footer>
+
+  <script>
+    // Current time check (for deadline)
+    const deadline = new Date('August 1, 2025 18:00:00');
+    
+    function resetVotingSection() {
+      // Uncheck all checkboxes
+      document.querySelectorAll('input[name="timeslot"]').forEach(input => {
+        input.checked = false;
+        input.disabled = false;
+      });
+      
+      // Hide error/success messages
+      document.getElementById('voteError').style.display = "none";
+      document.getElementById('voteSuccess').style.display = "none";
+      
+      // Show submit button if it was hidden
+      document.getElementById('submitVoteBtn').style.display = "block";
+    }
+    
+    function verifyStudent() {
+      const studentId = document.getElementById('studentId').value.trim();
+      const errorDiv = document.getElementById('idError');
+      const votingSection = document.getElementById('votingSection');
+      
+      // Always reset the voting section when verifying
+      resetVotingSection();
+      
+      if (!studentId) {
+        errorDiv.textContent = "Please enter your Student ID.";
+        errorDiv.style.display = "block";
+        votingSection.style.display = "none";
+        return;
+      }
+      
+      // Only student ID "123" is registered for demo purposes
+      if (studentId !== "123") {
+        errorDiv.innerHTML = "Student ID not registered yet. Please <a href='#registration' class='registration-link'>click Registration</a> at the top to register.";
+        errorDiv.style.display = "block";
+        votingSection.style.display = "none";
+        return;
+      }
+      
+      // If verification passes
+      errorDiv.style.display = "none";
+      votingSection.style.display = "block";
+    }
+    
+    function submitVote() {
+      const now = new Date();
+      const selectedSlots = document.querySelectorAll('input[name="timeslot"]:checked');
+      const errorDiv = document.getElementById('voteError');
+      const successDiv = document.getElementById('voteSuccess');
+      const submitBtn = document.getElementById('submitVoteBtn');
+      
+      // Check if voting is closed
+      if (now > deadline) {
+        errorDiv.textContent = "Voting is now closed. The deadline was 6:00 PM.";
+        errorDiv.style.display = "block";
+        return;
+      }
+      
+      // Check number of selected slots
+      if (selectedSlots.length === 0) {
+        errorDiv.textContent = "Please select at least one time slot.";
+        errorDiv.style.display = "block";
+        return;
+      }
+      
+      if (selectedSlots.length > 2) {
+        errorDiv.textContent = "You may select a maximum of 2 time slots.";
+        errorDiv.style.display = "block";
+        return;
+      }
+      
+      // If validation passes
+      errorDiv.style.display = "none";
+      
+      // In a real app, you would send this to your backend
+      const selectedTimes = Array.from(selectedSlots).map(slot => slot.value);
+      console.log("Votes submitted for:", selectedTimes);
+      
+      // Show success message
+      successDiv.textContent = "Thank you for voting! Your selections have been recorded.";
+      successDiv.style.display = "block";
+      
+      // Hide the submit button
+      submitBtn.style.display = "none";
+      
+      // Disable form after submission
+      document.querySelectorAll('input[name="timeslot"]').forEach(input => {
+        input.disabled = true;
+      });
+    }
+  </script>
+</body>
+</html>
