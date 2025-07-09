@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Time Slot Voting System</title>
+  <!-- Firebase SDK -->
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+  <!-- Firebase Config -->
+  <script src="./js/firebase-config.js"></script>
+  <script src="./js/app-index.js"></script>
+<link rel="stylesheet" href="./css/style.css">
+</head>
+<body>
+  <header>
+    <div class="header-content">
+      <div class="logo-container">
+        <img src="./images/UTP-logo.png" alt="UTP Logo" class="logo">
+      </div>
+      <nav>
+        <a href="./index.html">Home</a>
+        <a href="./register.html">Registration</a>
+        <a href="./event.html">Event</a>
+        <a href="./report.html">Report</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <div class="container">
+      <h2 class="page-title" id="eventTitle">Loading event...</h2>
+      <p class="page-subtitle" id="eventDate"></p>
+      
+      <div class="event-description" id="eventDescription"></div>
+      <p>Just follow these simple steps. To vote, student needs to register, key in UTP Student ID, select a meeting time slot and submit the vote.</p>
+      <p>The official voting results will be published at <a href="report.html">here</a></p>
+      
+      <div class="deadline-note" id="deadlineNote">
+        Loading voting deadline...
+      </div>
+      
+      <div class="form-group" id="studentIdSection">
+        <label for="studentId">UTP Student ID</label>
+        <input type="text" id="studentId" style="width:50%" placeholder="Enter your student ID">
+        <button class="btn" id="findBtn" onclick="verifyStudent()">Find</button>
+        <div id="idError" class="alert alert-error"></div>
+      </div>
+      
+      <div id="votingSection" style="display:none;">
+        <h3>Available Time Slots</h3>
+        <p id="voteInstructions">Please select up to 2 preferred time slots:</p>
+        
+        <div class="time-slots" id="timeSlotsContainer">
+          <!-- Time slots will be loaded dynamically -->
+        </div>
+        
+        <button id="submitVoteBtn" class="btn" onclick="submitVote()">Submit Vote</button>
+        <div id="voteError" class="alert alert-error"></div>
+        <div id="voteSuccess" class="alert alert-success"></div>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <div class="footer-content">
+      <h3>Contact Us</h3>
+      <p>Universiti Teknologi PETRONAS</p>
+      <p>32610 Seri Iskandar</p>
+      <p>Perak Darul Ridzuan, Malaysia</p>
+      <p>Tel: 1-300-22-8887</p>
+      <p>Email: html-class@utp.edu.my</p>
+      <p><a href="https://www.utp.edu.my" target="_blank">https://www.utp.edu.my</a></p>
+    </div>
+  </footer>
+</body>
+</html>

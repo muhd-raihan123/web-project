@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Time Slot Voting System</title>
+    <!-- Firebase SDK -->
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+  <!-- Firebase Config -->
+  <script src="./js/firebase-config.js"></script>
+  <script src="./js/app-register.js"></script>
+  <link rel="stylesheet" href="./css/style.css">
+</head>
+<body>
+  <header>
+    <div class="header-content">
+      <div class="logo-container">
+        <img src="./images/UTP-logo.png" alt="UTP Logo" class="logo">
+      </div>
+      <nav>
+        <a href="./index.html">Home</a>
+        <a href="./register.html">Registration</a>
+        <a href="./event.html">Event</a>
+        <a href="./report.html">Report</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <div class="container">
+      <h2>Student Registration</h2>
+      
+      <form id="registrationForm">
+        <div class="form-group">
+          <label for="studentId" class="required-field">Student ID</label>
+          <input type="text" id="studentId" placeholder="Enter your student ID" required>
+        </div>
+        
+        <div class="form-group">
+          <label for="firstName" class="required-field">First Name</label>
+          <input type="text" id="firstName" placeholder="Enter your first name" required>
+        </div>
+        
+        <div class="form-group">
+          <label for="lastName" class="required-field">Last Name</label>
+          <input type="text" id="lastName" placeholder="Enter your last name" required>
+        </div>
+        
+        <div class="form-group">
+          <label for="course" class="required-field">Course</label>
+          <select id="course" required>
+            <option value="">Select your course</option>
+            <option value="Bachelor of Computer Science">Bachelor of Computer Science</option>
+            <option value="Bachelor of Information Technology">Bachelor of Information Technology</option>
+            <option value="Bachelor of Information System">Bachelor of Information System</option>
+          </select>
+        </div>
+        
+        <div class="form-group">
+          <label for="phone">Phone Number</label>
+          <input type="tel" id="phone" placeholder="Enter your phone number">
+        </div>
+        
+        <div class="form-group">
+          <label for="email" class="required-field">UTP Email Address</label>
+          <input type="email" id="email" placeholder="Enter your UTP email" required>
+        </div>
+        
+        <p class="disclaimer">Entering your personal data above and clicking submit</p>
+        
+        <button type="submit" class="btn" id="submitBtn">Submit</button>
+        <div id="formError" class="alert alert-error"></div>
+        <div id="formSuccess" class="alert alert-success"></div>
+      </form>
+    </div>
+  </main>
+
+  <footer>
+    <div class="footer-content">
+      <h3>Contact Us</h3>
+      <p>Universiti Teknologi PETRONAS</p>
+      <p>32610 Seri Iskandar</p>
+      <p>Perak Darul Ridzuan, Malaysia</p>
+      <p>Tel: 1-300-22-8887</p>
+      <p>Email: html-class@utp.edu.my</p>
+      <p><a href="https://www.utp.edu.my" target="_blank">https://www.utp.edu.my</a></p>
+    </div>
+  </footer>
+
+
+</body>
+</html>
